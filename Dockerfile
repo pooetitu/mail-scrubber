@@ -22,4 +22,4 @@ ENV PORT=8181
 
 EXPOSE 8181
 
-ENTRYPOINT ["scrubber"]
+ENTRYPOINT ["/usr/local/bin/scrubber"]
