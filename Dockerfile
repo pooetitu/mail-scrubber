@@ -23,4 +23,4 @@ ENV PORT=8181
 
 EXPOSE 8181
 
-ENTRYPOINT ["./home/app/scrubber"]
+ENTRYPOINT ["scrubber"]
