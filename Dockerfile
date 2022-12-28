@@ -12,14 +12,15 @@ RUN go mod download && go mod verify
 RUN go build -v -o /usr/local/bin/scrubber
 
 FROM alpine
-COPY --from=build /usr/local/bin/scrubber /usr/local/bin/scrubber
 
 RUN mkdir /home/app
 WORKDIR /home/app
+
+COPY --from=build /usr/local/bin/scrubber /home/app/scrubber
 
 ENV GIN_MODE=release
 ENV PORT=8181
 
 EXPOSE 8181
 
-ENTRYPOINT ["/usr/local/bin/scrubber"]
+ENTRYPOINT ["./home/app/scrubber"]
