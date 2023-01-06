@@ -12,7 +12,6 @@ func scrubMail(c *gin.Context) {
 		truemail.ConfigurationAttr{
 			VerifierEmail:      "pooetitu@gmail.com",
 			NotRfcMxLookupFlow: true,
-			SmtpFailFast:       true,
 		},
 	)
 	if truemail.IsValid(mail, configuration) {
