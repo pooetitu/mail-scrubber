@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -10,12 +11,17 @@ func scrubMail(c *gin.Context) {
 	mail := c.Param("mail")
 	configuration, _ := truemail.NewConfiguration(
 		truemail.ConfigurationAttr{
-			VerifierEmail: "pooetitu@gmail.com",
+			VerifierEmail: "azerty@gmail.com",
 		},
 	)
-	if truemail.IsValid(mail, configuration) {
+	validate, err := truemail.Validate(mail, configuration)
+	if err != nil {
+		return
+	}
+	if validate.Success {
 		c.Writer.WriteHeader(http.StatusOK)
 	} else {
+		fmt.Printf("%#v", validate)
 		c.Writer.WriteHeader(http.StatusNotFound)
 	}
 }
