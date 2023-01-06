@@ -10,8 +10,7 @@ func scrubMail(c *gin.Context) {
 	mail := c.Param("mail")
 	configuration, _ := truemail.NewConfiguration(
 		truemail.ConfigurationAttr{
-			VerifierEmail:      "pooetitu@gmail.com",
-			NotRfcMxLookupFlow: true,
+			VerifierEmail: "pooetitu@gmail.com",
 		},
 	)
 	if truemail.IsValid(mail, configuration) {
